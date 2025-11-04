@@ -353,6 +353,8 @@ rbac:
 
 #  Configure extra options for containers probes.
 startupProbe:
+  # -- Enables kubernetes StartupProbe.
+  enabled: true
   # -- Delay after container start until StartupProbe is executed.
   initialDelaySeconds: 15
   # -- Number of failed executions until container is terminated.

@@ -218,7 +218,9 @@ spec:
           {{- end }}
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.livenessProbe "context" .) | nindent 12 }}
           readinessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.readinessProbe "context" .) | nindent 12 }}
+          {{- if .Values.startupProbe.enabled }}
           startupProbe: {{- include "common.tplvalues.render" (dict "value" .Values.startupProbe "context" .) | nindent 12 }}
+          {{- end }}
           resources: {{- include "common.tplvalues.render" (dict "value" (coalesce .Values.resourcesPrimary .Values.resources) "context" .) | nindent 12 }}
           {{- if .Values.lifecycleHooks }}
           lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.lifecycleHooks "context" .) | nindent 12 }}
@@ -260,7 +262,9 @@ spec:
           {{- end }}
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.livenessProbe "context" .) | nindent 12 }}
           readinessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.readinessProbePrimary "context" .) | nindent 12 }}
+          {{- if .Values.startupProbe.enabled }}
           startupProbe: {{- include "common.tplvalues.render" (dict "value" .Values.startupProbe "context" .) | nindent 12 }}
+          {{- end }}
           resources: {{- include "common.tplvalues.render" (dict "value" (coalesce .Values.resourcesPrimary .Values.resources) "context" .) | nindent 12 }}
           ports:
             {{- range $key, $value := .Values.service.ports }}
@@ -367,7 +371,9 @@ spec:
               value: {{ .Values.ldapServer.leaderElector.renewDeadlineSeconds | quote }}
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.livenessProbe "context" .) | nindent 12 }}
           readinessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.readinessProbe "context" .) | nindent 12 }}
+          {{- if .Values.startupProbe.enabled }}
           startupProbe: {{- include "common.tplvalues.render" (dict "value" .Values.startupProbe "context" .) | nindent 12 }}
+          {{- end }}
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: "shared-data"
